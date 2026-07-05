@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package qcosmos.pqregistry.v1;
+
+option go_package = "github.com/qcosmos/protocol/x/pqregistry/types";
+
+message MsgRegisterPQKey {
+  string chain_id = 1;
+  string address = 2;
+  bytes classic_public_key = 3;
+  string pq_algorithm = 4;
+  bytes pq_public_key = 5;
+  uint64 pq_key_version = 6;
+  string nonce = 7;
+  uint64 not_before_height = 8;
+  uint64 expires_at_height = 9;
+  map<string, string> metadata = 10;
+  bytes classic_signature = 11;
+  bytes pq_signature = 12;
+}
+
+message MsgRegisterPQKeyResponse {
+  uint64 pq_key_version = 1;
+}
+
+message MsgRotatePQKey {
+  string chain_id = 1;
+  string address = 2;
+  bytes classic_public_key = 3;
+  string next_pq_algorithm = 4;
+  bytes next_pq_public_key = 5;
+  uint64 next_pq_key_version = 6;
+  string nonce = 7;
+  uint64 not_before_height = 8;
+  uint64 expires_at_height = 9;
+  map<string, string> metadata = 10;
+  bytes classic_signature = 11;
+  bytes next_pq_signature = 12;
+  bytes previous_pq_signature = 13;
+}
+
+message MsgRotatePQKeyResponse {
+  uint64 pq_key_version = 1;
+}
+
+message MsgRevokePQKey {
+  string chain_id = 1;
+  string address = 2;
+  bytes classic_public_key = 3;
+  uint64 pq_key_version = 4;
+  string nonce = 5;
+  string reason = 6;
+  bytes classic_signature = 7;
+  bytes pq_signature = 8;
+}
+
+message MsgRevokePQKeyResponse {}

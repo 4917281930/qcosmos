@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package qcosmos.pqfinality.v1;
+
+option go_package = "github.com/qcosmos/protocol/x/pqfinality/types";
+
+message HeaderCommitment {
+  string chain_id = 1;
+  uint64 height = 2;
+  uint32 round = 3;
+  bytes block_id = 4;
+  bytes app_hash = 5;
+  bytes validators_hash = 6;
+  bytes next_validators_hash = 7;
+  uint64 time_unix_ms = 8;
+}
+
+message ValidatorDescriptor {
+  string address = 1;
+  uint64 power = 2;
+  string pq_algorithm = 3;
+  bytes pq_public_key = 4;
+}
+
+message ValidatorAttestation {
+  string address = 1;
+  string pq_algorithm = 2;
+  bytes pq_public_key = 3;
+  bytes signature = 4;
+}
+
+message FinalityCertificate {
+  string protocol = 1;
+  uint32 version = 2;
+  HeaderCommitment header = 3;
+  repeated ValidatorAttestation attestations = 4;
+}
+
+message FinalityCertificateVerificationResult {
+  bool ok = 1;
+  repeated string errors = 2;
+  uint64 signed_power = 3;
+  uint64 total_power = 4;
+}

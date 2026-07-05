@@ -1,0 +1,10 @@
+node_modules
+coverage
+dist
+*.log
+.git
+.github
+test
+testdata
+examples
+qcosmos-protocol-*.tgz

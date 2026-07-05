@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package qcosmos.pqregistry.v1;
+
+option go_package = "github.com/qcosmos/protocol/x/pqregistry/types";
+
+message PQKeyEntry {
+  string address = 1;
+  string classic_algorithm = 2;
+  bytes classic_public_key = 3;
+  string pq_algorithm = 4;
+  bytes pq_public_key = 5;
+  uint64 pq_key_version = 6;
+  string status = 7;
+  uint64 not_before_height = 8;
+  uint64 expires_at_height = 9;
+  uint64 registered_at_height = 10;
+  uint64 rotated_at_height = 11;
+  uint64 revoked_at_height = 12;
+  string revocation_reason = 13;
+  map<string, string> metadata = 14;
+}
+
+message GenesisState {
+  repeated PQKeyEntry entries = 1;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package qcosmos.pqpolicy.v1;
+
+option go_package = "github.com/qcosmos/protocol/x/pqpolicy/types";
+
+message Fraction {
+  uint64 numerator = 1;
+  uint64 denominator = 2;
+}
+
+message ChainPolicy {
+  uint64 activation_height = 1;
+  uint64 legacy_grace_period = 2;
+  repeated string allowed_signature_algorithms = 3;
+  string preferred_signature_algorithm = 4;
+  repeated string mandatory_account_classes = 5;
+  Fraction min_validator_certificate_power = 6;
+}

@@ -1,0 +1,52 @@
+{
+  "name": "qcosmos-protocol",
+  "version": "0.1.0",
+  "description": "Open-source post-quantum migration protocol primitives for Cosmos SDK chains.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "qcosmos": "./bin/qcosmos.js"
+  },
+  "files": [
+    "bin/",
+    "docs/",
+    "examples/",
+    "proto/",
+    "scripts/",
+    "src/",
+    "test/",
+    "testdata/",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md"
+  ],
+  "exports": {
+    ".": "./src/index.js",
+    "./address": "./src/address.js",
+    "./attestation": "./src/attestation.js",
+    "./canonical": "./src/canonical.js",
+    "./classic": "./src/classic.js",
+    "./ibc": "./src/ibc.js",
+    "./policy": "./src/policy.js",
+    "./pqc": "./src/pqc.js",
+    "./registry": "./src/registry.js",
+    "./tx": "./src/tx.js"
+  },
+  "scripts": {
+    "build": "node scripts/build-check.js && node scripts/validate-protos.js",
+    "ci": "npm run build && npm test && node examples/end-to-end.js",
+    "release:check": "npm run ci && npm pack --dry-run",
+    "vectors": "node scripts/generate-vectors.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.2.0",
+    "@noble/post-quantum": "^0.6.1",
+    "@noble/secp256k1": "^3.1.0",
+    "bech32": "^2.0.0",
+    "protobufjs": "^7.6.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package qcosmos.pqauth.v1;
+
+option go_package = "github.com/qcosmos/protocol/x/pqauth/types";
+
+message HybridTxEnvelope {
+  string chain_id = 1;
+  string account_address = 2;
+  uint64 sequence = 3;
+  bytes canonical_body = 4;
+  string classic_algorithm = 5;
+  bytes classic_public_key = 6;
+  bytes classic_signature = 7;
+  string pq_algorithm = 8;
+  bytes pq_public_key = 9;
+  uint64 pq_key_version = 10;
+  bytes pq_signature = 11;
+}
+
+message HybridTxVerificationResult {
+  bool ok = 1;
+  repeated string errors = 2;
+}
